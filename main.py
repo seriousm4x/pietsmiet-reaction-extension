@@ -57,6 +57,10 @@ def create_matches(videos: list) -> None:
                 "published_at": video["snippet"]["publishedAt"]
             }
 
+    print("writing matches.min.json ...")
+    with open("data/matches.min.json", "w", encoding="utf-8") as f:
+        json.dump(matches, f)
+
     print("writing matches.json ...")
     with open("data/matches.json", "w", encoding="utf-8") as f:
         json.dump(matches, f, indent=4)
