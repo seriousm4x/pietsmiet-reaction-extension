@@ -44,17 +44,23 @@ def create_matches(videos: list) -> None:
     print("creating matches.json ...")
     matches = {}
     for video in videos:
-        if not re.search(r"(?i)react", video["snippet"]["title"]):
+        if not re.search(r"(?i)react", video["snippet"]["title"]) and not re.search(r"(?i)original-?video", video["snippet"]["description"]):
             continue
         r = re.search(
             r"(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})", video["snippet"]["description"])
-        if r:
-            org_video_id = r.groups()[0]
-            matches[org_video_id] = {
-                "reaction_id": video["snippet"]["resourceId"]["videoId"],
-                "title": video["snippet"]["title"],
-                "published_at": video["snippet"]["publishedAt"]
-            }
+        if not r:
+            continue
+        org_video_id = r.groups()[0]
+
+        d = {
+            "reaction_id": video["snippet"]["resourceId"]["videoId"],
+            "title": video["snippet"]["title"],
+            "published_at": video["snippet"]["publishedAt"]
+        }
+
+        if not matches.get(org_video_id):
+            matches[org_video_id] = []
+        matches[org_video_id].append(d)
 
     with open("data/matches.min.json", "w", encoding="utf-8") as f:
         json.dump(matches, f)

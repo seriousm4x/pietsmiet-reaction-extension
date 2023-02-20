@@ -10,7 +10,6 @@
 
 ## To Do
 
--   matches als "id": [array] speichern um bei mehrfachem reagieren alle matches anzuzeigen
 -   chrome testen
 -   in extension stores veröffentlichen
 -   gh-action mit cron einrichten
