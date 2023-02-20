@@ -1,7 +1,14 @@
-let logPreTag = "[pietsmiet reactions]";
-let storageItem = localStorage.getItem("pietsmiet-reactions");
+let api;
+if (typeof chrome !== undefined) {
+    api = chrome;
+} else if (typeof browser !== undefined) {
+    api = browser;
+}
 
-function createStorageItem() {
+let logPreTag = "[pietsmiet reactions]";
+let storageItem = getStorageItem();
+
+function setStorageItem() {
     // get videos from github
     fetch(
         "https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/data/matches.min.json"
@@ -12,19 +19,17 @@ function createStorageItem() {
                 fetched_at: Date.now(),
                 videos: data,
             };
-            localStorage.setItem(
-                "pietsmiet-reactions",
-                JSON.stringify(storageItem)
-            );
+            api.storage.local.set({ pietsmietReactions: storageItem });
         });
 }
 
-function createHTML() {
-    // only run on /watch url
-    if (window.location.pathname !== "/watch") {
-        return;
-    }
+function getStorageItem() {
+    api.storage.local.get("pietsmietReactions").then((res) => {
+        return res.pietsmietReactions;
+    });
+}
 
+function createHTML() {
     // get video id from url
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -46,22 +51,31 @@ function createHTML() {
 
     // create message
     const reactionMessage = document.createElement("p");
+    reactionMessage.style.fontWeight = "bold";
 
     if (storageItem.videos[videoId]) {
         // reaction exists
-        const published = Date.parse(storageItem.videos[videoId].published_at);
         reactionBox.style.backgroundColor = "#046931"; // green bg
-        reactionMessage.innerHTML = `<span style="font-weight: bold;">React gefunden: <a href="https://youtube.com/watch?v=${
-            storageItem.videos[videoId].reaction_id
-        }" target="_blank" style="color: white;">${
-            storageItem.videos[videoId].title
-        }</a></span><br>Hochgeladen: ${new Date(published).toLocaleDateString(
-            "de-DE"
-        )}`;
+        reactionMessage.innerHTML = "Reacts gefunden:";
+        const reactsList = document.createElement("ul");
+        reactsList.style.paddingLeft = "2rem";
+        storageItem.videos[videoId].forEach((react) => {
+            const published = Date.parse(react.published_at);
+            const li = document.createElement("li");
+            li.style.paddingTop = "0.5rem";
+            li.innerHTML = `<a href="https://youtube.com/watch?v=${
+                react.reaction_id
+            }" target="_blank" style="color: white;">${
+                react.title
+            }</a><br><span style="font-weight: normal;">Hochgeladen: ${new Date(
+                published
+            ).toLocaleDateString("de-DE")}</span>`;
+            reactsList.appendChild(li);
+        });
+        reactionMessage.appendChild(reactsList);
     } else {
         // reaction doesn't exist
         reactionBox.style.backgroundColor = "#cc181e"; // red bg
-        reactionMessage.style.fontWeight = "bold";
         reactionMessage.textContent = "Kein React gefunden";
     }
 
@@ -70,24 +84,23 @@ function createHTML() {
     aboveTheFold.insertBefore(reactionBox, aboveTheFold.children[2]);
 }
 
-// set local storage
-if (storageItem === null) {
-    console.log(logPreTag, "creating new storage item");
-    createStorageItem();
+// set storage
+if (storageItem === undefined) {
+    setStorageItem();
 } else {
-    console.log(logPreTag, "storage item found");
-    storageItem = JSON.parse(storageItem);
+    storageItem = getStorageItem();
     // fetch new videos if localstorage older than 1h
     if (Date.now() - storageItem.fetched_at >= 3600000) {
-        console.log(logPreTag, "storage item outdated. creating new");
-        createStorageItem();
-    } else {
-        console.log(logPreTag, "storage item in time range");
+        setStorageItem();
     }
 }
 
 // wait for youtube elements to be created
 const callback = function (mutationsList, observer) {
+    // fast url check before search whole html dom
+    if (window.location.pathname !== "/watch") {
+        return;
+    }
     for (const mutation of mutationsList) {
         if (
             mutation.target.id === "bottom-row" &&
@@ -106,6 +119,10 @@ observer.observe(document.body, { childList: true, subtree: true });
 window.addEventListener(
     "yt-navigate-finish",
     () => {
+        // fast url check before search whole html dom
+        if (window.location.pathname !== "/watch") {
+            return;
+        }
         if (document.querySelector("#above-the-fold")) {
             createHTML();
         }
