@@ -4,7 +4,7 @@
 
 <div align="center" width="100%">
     <h2>PietSmiet Reaction Extension</h2>
-    <p>Ein simpler Banner unter Youtube Videos zeigt an, ob auf das Video schon reagiert wurde. Das Ziel des Ganzen ist dabei den Jungs zu helfen, weniger auf dopplte Videos zu reagieren. Ob das klappt? Wir werden's sehen 😅</p>
+    <p>Ein einfacher Banner unter den Youtube-Videos zeigt an, ob auf das Video bereits reagiert wurde. Das Ganze soll den Jungs helfen, weniger auf doppelte Videos zu reagieren. Ob das funktioniert? Mal sehen 😅</p>
     <a target="_blank" href="https://github.com/seriousm4x/pietsmiet-reaction-extension/actions"><img src="https://img.shields.io/chrome-web-store/v/cmeffgcdjkledgkgonnfjpnlfelpfbkf" /></a>
     <a target="_blank" href="https://addons.mozilla.org/de/firefox/addon/pietsmiet-reactions-youtube/"><img src="https://img.shields.io/amo/v/pietsmiet-reactions-youtube" /></a>
     <a target="_blank" href="https://github.com/seriousm4x/pietsmiet-reaction-extension/commits/main"><img src="https://img.shields.io/github/last-commit/seriousm4x/pietsmiet-reaction-extension" /></a>
