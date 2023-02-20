@@ -1,6 +1,6 @@
+import argparse
 import json
 import re
-import argparse
 
 import requests
 
