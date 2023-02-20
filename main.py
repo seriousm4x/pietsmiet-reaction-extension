@@ -10,7 +10,7 @@ def get_videos(yt_api_key: str) -> list:
     get all videos from youtube api and save as "youtube.json"
     '''
 
-    print("requesting videos from youtube...")
+    print("creating youtube.json ...")
     url = f"https://www.googleapis.com/youtube/v3/playlistItems?playlist_id=UU3wla9xMoxDu7MIZImad1kQ&part=snippet&key={yt_api_key}&maxResults=50"
     videos = []
     nextPageToken = ""
@@ -30,7 +30,6 @@ def get_videos(yt_api_key: str) -> list:
         else:
             break
 
-    print("writing youtube.json ...")
     with open("data/youtube.json", "w", encoding="utf-8") as f:
         json.dump(videos, f, indent=4)
 
@@ -42,7 +41,7 @@ def create_matches(videos: list) -> None:
     scans video description for youtube urls and writes them into "matches.json"
     '''
 
-    print("finding matches ...")
+    print("creating matches.json ...")
     matches = {}
     for video in videos:
         if not re.search(r"(?i)react", video["snippet"]["title"]):
@@ -57,24 +56,28 @@ def create_matches(videos: list) -> None:
                 "published_at": video["snippet"]["publishedAt"]
             }
 
-    print("writing matches.min.json ...")
     with open("data/matches.min.json", "w", encoding="utf-8") as f:
         json.dump(matches, f)
 
-    print("writing matches.json ...")
     with open("data/matches.json", "w", encoding="utf-8") as f:
         json.dump(matches, f, indent=4)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-a", "--api", help="youtube api key",
-                        type=str, required=True)
+    group_data_source = parser.add_mutually_exclusive_group(required=True)
+    group_data_source.add_argument("-a", "--api", help="youtube api key",
+                                   type=str)
+    group_data_source.add_argument(
+        "-c", "--cached", help="use cached data/youtube.json version instead of requesting from youtube.", action=argparse.BooleanOptionalAction)
     args = parser.parse_args()
 
-    # videos = get_videos(args.api)
-    with open("data/youtube.json", "r", encoding="utf-8") as f:
-        videos = json.load(f)
+    # choose datasource based on arguments
+    if args.cached:
+        with open("data/youtube.json", "r", encoding="utf-8") as f:
+            videos = json.load(f)
+    else:
+        videos = get_videos(args.api)
     create_matches(videos)
 
 
