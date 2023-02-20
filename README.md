@@ -1,3 +1,5 @@
+![](./extension/icons/128.png)
+
 # PietSmiet Reaction Extension
 
 > Fügt einen Banner unter YouTube Videos hinzu, ob die Jungs schonmal auf das Video reagiert haben, oder nicht.
