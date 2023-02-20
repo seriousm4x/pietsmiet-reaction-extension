@@ -1,9 +1,9 @@
 name: Update Reactions
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "59 23 * * *"
-  workflow_dispatch:
 
 jobs:
   update_reactions:
