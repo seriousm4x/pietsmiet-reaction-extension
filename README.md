@@ -23,6 +23,10 @@
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/pietsmiet-reactions/cmeffgcdjkledgkgonnfjpnlfelpfbkf)
 - [Firefox Add-Ons](https://addons.mozilla.org/de/firefox/addon/pietsmiet-reactions-youtube/)
 
+Bei Firefox muss dem Addon noch Erlaubnis erteilt werden auf youtube.com zuzugreifen:
+
+![](./assets/firefox-allow-permissions.jpg)
+
 ## **Getestete Browser**
 
 Folgende Liste hab ich getestet. Andere Browser sollten auch ohne Probleme klappen
