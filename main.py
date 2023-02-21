@@ -68,6 +68,8 @@ def create_matches(videos: list) -> None:
     with open("data/matches.json", "w", encoding="utf-8") as f:
         json.dump(matches, f, indent=4)
 
+    print("found", len(matches), "matches")
+
 
 def main():
     parser = argparse.ArgumentParser()
