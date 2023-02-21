@@ -23,7 +23,7 @@ jobs:
           python main.py -a ${{ secrets.YT_API_KEY }}
       - name: commit files
         run: |
-          if [ $(git diff --cached --numstat | wc -l) == 0 ]; then exit 0; fi
+          if [ $(git status -s | wc -l) == 0 ]; then exit 0; fi
           git config --global user.name 'gh-actions'
           git config --global user.email 'seriousm4x@users.noreply.github.com'
           git add .
