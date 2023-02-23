@@ -3,7 +3,7 @@
 </div>
 
 <div align="center" width="100%">
-    <h2>PietSmiet Reaction Extension</h2>
+    <h2>PietSmiet Reactions YouTube</h2>
     <p>Ein einfacher Banner unter den Youtube-Videos zeigt an, ob auf das Video bereits reagiert wurde. Das Ganze soll den Jungs helfen, weniger auf doppelte Videos zu reagieren. Ob das funktioniert? Mal sehen 😅</p>
     <a target="_blank" href="https://chrome.google.com/webstore/detail/pietsmiet-reactions/cmeffgcdjkledgkgonnfjpnlfelpfbkf"><img src="https://img.shields.io/chrome-web-store/v/cmeffgcdjkledgkgonnfjpnlfelpfbkf" /></a>
     <a target="_blank" href="https://addons.mozilla.org/de/firefox/addon/pietsmiet-reactions-youtube/"><img src="https://img.shields.io/amo/v/pietsmiet-reactions-youtube" /></a>
