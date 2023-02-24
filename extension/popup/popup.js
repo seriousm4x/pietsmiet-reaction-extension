@@ -69,7 +69,7 @@ async function init() {
     // set infosList
     const infosList = document.querySelector('#infosList')
     const reactionsCount = document.createElement("li")
-    reactionsCount.textContent = "Gefundede Reacts: " + Object.keys(reactions.videos).length.toLocaleString("de-DE")
+    reactionsCount.textContent = "Gefundene Reacts: " + Object.keys(reactions.videos).length.toLocaleString("de-DE")
     infosList.appendChild(reactionsCount)
 
     // set fetched_at date
