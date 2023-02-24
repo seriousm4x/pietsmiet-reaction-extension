@@ -1,0 +1,38 @@
+{
+  "name": "PietSmiet Reactions YouTube",
+  "description": "Adds a textbox underneath the YouTube player so see if a PietSmiet reaction exists to this video.",
+  "version": "1.1.0",
+  "manifest_version": 3,
+  "minimum_chrome_version": "102.0.0.0",
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "pietsmietReacts.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    },
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

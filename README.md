@@ -18,6 +18,10 @@
 | --------------------------- | -------------------------- |
 | ![](./assets/yep-react.jpg) | ![](./assets/no-react.jpg) |
 
+| Popup                   | Color Picker                  |
+| ----------------------- | ----------------------------- |
+| ![](./assets/popup.jpg) | ![](./assets/popup-pickr.jpg) |
+
 ## **Downloads**
 
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/pietsmiet-reactions/cmeffgcdjkledgkgonnfjpnlfelpfbkf)

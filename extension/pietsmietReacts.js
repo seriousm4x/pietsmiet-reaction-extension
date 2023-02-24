@@ -5,8 +5,8 @@
 const logTag = " --> [PSRE]"
 let settings = {
     showNoReactions: true,
-    noReactionsBgColor: "#046931", // green bg
-    foundReactionsBgColor: "#9b393c", // red bg
+    noReactionsBgColor: "#046931",
+    foundReactionsBgColor: "#9b393c",
 }
 let reactions;
 
@@ -16,7 +16,7 @@ let reactions;
 
 async function init() {
     // define browser api
-    const api = getBrowserApi()
+    const api = getBrowser()
 
     // load settings from storage
     settings = await api.storage.local.get(settings)
@@ -45,14 +45,11 @@ async function init() {
     runObserver()
 }
 
-function getBrowserApi() {
-    let api;
-    if (browser !== undefined) {
-        api = browser
-    } else {
-        api = chrome
+function getBrowser() {
+    if (typeof chrome !== "undefined") {
+        return chrome
     }
-    return api
+    return browser
 }
 
 function runObserver() {

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PietSmiet Reaction Extension</title>
+    <link rel="stylesheet" href="./pickr/nano.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="nav">
+        PietSmiet Reactions YouTube
+    </div>
+    <div class="container">
+        <h1>Hinweis anzeigen, selbst wenn kein React gefunden wurde:</h1>
+        <button id="btnShowNoReactions" class="button">Loading...</button>
+        <h1 class="my">Hintergrundfarben</h1>
+        <div class="pickr-wrapper">
+            <div id="pickrFoundReactionsBgColor"></div>
+            <span class="pickr-description">React gefunden</span>
+        </div>
+        <div class="pickr-wrapper">
+            <div id="pickrNoReactionsBgColor"></div>
+            <span class="pickr-description">React nicht gefunden</span>
+        </div>
+        <button id="btnResetColors" class="button">↩️ Farben zurücksetzen</button>
+
+        <h1 class="my">Infos</h1>
+        <ul id="infosList"></ul>
+        <div id="version"></div>
+    </div>
+    <script src="./pickr/pickr.es5.min.js"></script>
+    <script src="./popup.js"></script>
+</body>
+
+</html>
