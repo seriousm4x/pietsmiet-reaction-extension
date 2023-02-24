@@ -116,8 +116,9 @@ function createHTML() {
     if (reactions.videos[videoId]) {
         // reaction exists
         console.log(logTag, "reaction found:", reactions.videos[videoId]);
+        const countReactions = reactions.videos[videoId].length
         reactionBox.style.backgroundColor = settings.foundReactionsBgColor;
-        reactionMessage.innerText = "Reacts gefunden:";
+        reactionMessage.innerText = countReactions === 1 ? "1 React gefunden:" : `${countReactions} Reacts gefunden:`;
         const reactsList = document.createElement("ul");
         reactsList.style.paddingLeft = "2rem";
         reactions.videos[videoId].forEach((react) => {
@@ -137,9 +138,7 @@ function createHTML() {
 
             const span = document.createElement("span")
             span.style.cssText = "font-weight: normal;"
-            span.textContent = "Hochgeladen: " + new Date(
-                published
-            ).toLocaleDateString("de-DE")
+            span.textContent = "Hochgeladen: " + new Date(published).toLocaleDateString("de-DE")
             li.appendChild(span)
 
             reactsList.appendChild(li);
