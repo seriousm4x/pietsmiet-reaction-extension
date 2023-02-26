@@ -12,24 +12,16 @@
     <a target="_blank" href="https://github.com/seriousm4x/pietsmiet-reaction-extension/blob/main/LICENSE"><img src="https://img.shields.io/github/license/seriousm4x/pietsmiet-reaction-extension" /></a>
 </div>
 
-## **Screenshots**
-
-| Gefunden                    | Nicht gefunden             |
-| --------------------------- | -------------------------- |
-| ![](./assets/yep-react.jpg) | ![](./assets/no-react.jpg) |
-
-| Popup                   | Color Picker                  |
-| ----------------------- | ----------------------------- |
-| ![](./assets/popup.jpg) | ![](./assets/popup-pickr.jpg) |
-
 ## **Downloads**
 
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/pietsmiet-reactions/cmeffgcdjkledgkgonnfjpnlfelpfbkf)
 - [Firefox Add-Ons](https://addons.mozilla.org/de/firefox/addon/pietsmiet-reactions-youtube/)
 
-Bei Firefox muss dem Addon noch Erlaubnis erteilt werden auf youtube.com zuzugreifen:
+Bei Firefox muss dem Addon noch Erlaubnis erteilt werden auf youtube.com und pietsmiet.de zuzugreifen:
 
-![](./assets/firefox-allow-permissions.jpg)
+| Youtube                         | Pietsmiet                         |
+| ------------------------------- | --------------------------------- |
+| ![](./assets/allow-youtube.png) | ![](./assets/allow-pietsmiet.png) |
 
 ## **Getestete Browser**
 
@@ -39,6 +31,26 @@ Folgende Liste hab ich getestet. Andere Browser sollten auch ohne Probleme klapp
 - Edge 110.0.1587.50
 - Brave 1.48.167
 - Firefox 110.0
+
+## **Screenshots**
+
+### **YouTube.com**
+
+| Gefunden                        | Nicht gefunden                     |
+| ------------------------------- | ---------------------------------- |
+| ![](./assets/youtube-found.png) | ![](./assets/youtube-notfound.png) |
+
+### **PietSmiet.de**
+
+| Alle Vorschläge                             | Einzeln gefunden                                     | Einzeln nicht gefunden                                  |
+| ------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
+| ![](./assets/pietsmiet-all-suggestions.png) | ![](./assets/pietsmiet-single-suggestions-found.png) | ![](./assets/pietsmiet-single-suggestions-notfound.png) |
+
+### **Popup**
+
+| Hauptfenster            | Color Picker                  |
+| ----------------------- | ----------------------------- |
+| ![](./assets/popup.png) | ![](./assets/popup-pickr.png) |
 
 ## **Wie funktioniert das Ganze?**
 

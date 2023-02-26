@@ -47,7 +47,7 @@ def create_matches(videos: list) -> None:
         if not re.search(r"(?i)react", video["snippet"]["title"]) and not re.search(r"(?i)original-?video", video["snippet"]["description"]):
             continue
         r = re.findall(
-            r"(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})", video["snippet"]["description"])
+            r"(?:https?:\/\/)?(?:www\.|m\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})", video["snippet"]["description"])
         if not r:
             continue
 

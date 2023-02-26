@@ -53,7 +53,7 @@ function getBrowser() {
 }
 
 function runObserver() {
-    // wait for youtube elements to be created
+    // wait for elements to be created
     const callback = function (mutationsList, observer) {
         // fast url check before search whole html dom
         if (window.location.pathname !== "/watch") {
@@ -116,30 +116,35 @@ function createHTML() {
     if (reactions.videos[videoId]) {
         // reaction exists
         console.log(logTag, "reaction found:", reactions.videos[videoId]);
-        const countReactions = reactions.videos[videoId].length
+        const countReactions = reactions.videos[videoId].length;
         reactionBox.style.backgroundColor = settings.foundReactionsBgColor;
-        reactionMessage.innerText = countReactions === 1 ? "1 React gefunden:" : `${countReactions} Reacts gefunden:`;
+        reactionMessage.innerText =
+            countReactions === 1
+                ? "1 React gefunden:"
+                : `${countReactions} Reacts gefunden:`;
         const reactsList = document.createElement("ul");
         reactsList.style.paddingLeft = "2rem";
         reactions.videos[videoId].forEach((react) => {
             const published = Date.parse(react.published_at);
             const li = document.createElement("li");
-            li.style.cssText = "padding-top: 0.5rem; list-style-type: '👉'; padding-inline-start: 1ch;";
+            li.style.cssText =
+                "padding-top: 0.5rem; list-style-type: '👉'; padding-inline-start: 1ch;";
 
-            const a = document.createElement("a")
-            a.href = "https://youtube.com/watch?v=" + react.reaction_id
-            a.target = "_blank"
-            a.style.cssText = "color: white;"
-            a.textContent = react.title
-            li.appendChild(a)
+            const a = document.createElement("a");
+            a.href = "https://youtube.com/watch?v=" + react.reaction_id;
+            a.target = "_blank";
+            a.style.cssText = "color: white;";
+            a.innerText = react.title;
+            li.appendChild(a);
 
-            const br = document.createElement("br")
-            li.appendChild(br)
+            const br = document.createElement("br");
+            li.appendChild(br);
 
-            const span = document.createElement("span")
-            span.style.cssText = "font-weight: normal;"
-            span.textContent = "Hochgeladen: " + new Date(published).toLocaleDateString("de-DE")
-            li.appendChild(span)
+            const span = document.createElement("span");
+            span.style.cssText = "font-weight: normal;";
+            span.innerText =
+                "Hochgeladen: " + new Date(published).toLocaleDateString("de-DE");
+            li.appendChild(span);
 
             reactsList.appendChild(li);
         });
@@ -152,7 +157,7 @@ function createHTML() {
             return
         }
         reactionBox.style.backgroundColor = settings.noReactionsBgColor;
-        reactionMessage.textContent = "Kein React gefunden";
+        reactionMessage.innerText = "Kein React gefunden";
     }
 
     // insert element
