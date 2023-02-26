@@ -19,9 +19,9 @@
 
 Bei Firefox muss dem Addon noch Erlaubnis erteilt werden auf youtube.com und pietsmiet.de zuzugreifen:
 
-| Youtube                         | Pietsmiet                         |
-| ------------------------------- | --------------------------------- |
-| ![](./assets/allow-youtube.png) | ![](./assets/allow-pietsmiet.png) |
+| Youtube                                                                                                                                    | Pietsmiet                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![](./assets/allow-youtube.png)](https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/assets/allow-youtube.png) | [![](./assets/allow-pietsmiet.png)](https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/assets/allow-pietsmiet.png) |
 
 ## **Getestete Browser**
 
@@ -36,21 +36,21 @@ Folgende Liste hab ich getestet. Andere Browser sollten auch ohne Probleme klapp
 
 ### **YouTube.com**
 
-| Gefunden                        | Nicht gefunden                     |
-| ------------------------------- | ---------------------------------- |
-| ![](./assets/youtube-found.png) | ![](./assets/youtube-notfound.png) |
+| Gefunden                                                                                                                        | Nicht gefunden                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| [![](./assets/youtube-found.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/youtube-found.png) | [![](./assets/youtube-notfound.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/youtube-notfound.png) |
 
 ### **PietSmiet.de**
 
-| Alle Vorschläge                             | Einzeln gefunden                                     | Einzeln nicht gefunden                                  |
-| ------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
-| ![](./assets/pietsmiet-all-suggestions.png) | ![](./assets/pietsmiet-single-suggestions-found.png) | ![](./assets/pietsmiet-single-suggestions-notfound.png) |
+| Alle Vorschläge                                                                                                                                         | Einzeln gefunden                                                                                                                                                          | Einzeln nicht gefunden                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![](./assets/pietsmiet-all-suggestions.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/pietsmiet-all-suggestions.png) | [![](./assets/pietsmiet-single-suggestions-found.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/pietsmiet-single-suggestions-found.png) | [![](./assets/pietsmiet-single-suggestions-notfound.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/pietsmiet-single-suggestions-notfound.png) |
 
 ### **Popup**
 
-| Hauptfenster            | Color Picker                  |
-| ----------------------- | ----------------------------- |
-| ![](./assets/popup.png) | ![](./assets/popup-pickr.png) |
+| Hauptfenster                                                                                                    | Color Picker                                                                                                                |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| [![](./assets/popup.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/popup.png) | [![](./assets/popup-pickr.png)](https://github.com/seriousm4x/pietsmiet-reaction-extension/raw/main/assets/popup-pickr.png) |
 
 ## **Wie funktioniert das Ganze?**
 
