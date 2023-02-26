@@ -3,7 +3,7 @@ name: update reactions
 on:
   workflow_dispatch:
   schedule:
-    - cron: "42 23 * * *"
+    - cron: "0 16 * * *"
 
 jobs:
   update_reactions:
