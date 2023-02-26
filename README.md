@@ -17,11 +17,9 @@
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/pietsmiet-reactions/cmeffgcdjkledgkgonnfjpnlfelpfbkf)
 - [Firefox Add-Ons](https://addons.mozilla.org/de/firefox/addon/pietsmiet-reactions-youtube/)
 
-Bei Firefox muss dem Addon noch Erlaubnis erteilt werden auf youtube.com und pietsmiet.de zuzugreifen:
+Bei Firefox muss dem Addon nach dem installieren noch die Erlaubnis erteilt werden, auf youtube.com und pietsmiet.de zuzugreifen:
 
-| Youtube                                                                                                                                    | Pietsmiet                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![](./assets/allow-youtube.png)](https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/assets/allow-youtube.png) | [![](./assets/allow-pietsmiet.png)](https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/assets/allow-pietsmiet.png) |
+[![](./assets/allow-permissions.png)](https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/assets/)
 
 ## **Getestete Browser**
 

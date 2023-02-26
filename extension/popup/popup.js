@@ -22,7 +22,6 @@ async function init() {
     settings = getSettings;
     const getReactions = await api.runtime.sendMessage({ message: "getReactions" });
     const reactions = getReactions.reactions
-    console.log(settings);
 
     // create color pickers
     const pickrFoundReactionsBgColor = Pickr.create({
@@ -86,6 +85,18 @@ async function init() {
     versionLink.target = "_blank"
     version.appendChild(versionLink)
 
+    // check required permissions
+    requestPermissions()
+    api.permissions.onAdded.addListener(requestPermissions)
+    api.permissions.onRemoved.addListener(requestPermissions)
+    const btnRequestPermissions = document.querySelector("#btnRequestPermissions")
+    btnRequestPermissions.addEventListener('click', async () => {
+        const wantedOrigins = await getWantedOrigins()
+        await api.permissions.request({
+            origins: wantedOrigins
+        })
+    })
+
     // listener btnShowNoReactions
     const btnShowNoReactions = document.querySelector("#btnShowNoReactions");
     setBtnShowNoReactions(btnShowNoReactions, settings.showNoReactions)
@@ -133,6 +144,26 @@ function setBtnShowNoReactions(btn, isEnabled) {
         btn.textContent = "❌ Deaktiviert";
         btn.style.backgroundColor = "var(--bg-danger)";
     }
+}
+
+async function requestPermissions() {
+    const wantedOrigins = await getWantedOrigins()
+    const activePerms = await api.permissions.getAll()
+    const btnRequestPermissions = document.querySelector("#btnRequestPermissions")
+    if (activePerms.origins.length !== wantedOrigins.length) {
+        btnRequestPermissions.style.display = "block"
+    } else {
+        btnRequestPermissions.style.display = "none"
+    }
+}
+
+async function getWantedOrigins() {
+    const manifest = await api.runtime.getManifest()
+    let wantedOrigins = []
+    manifest.content_scripts.forEach(url => {
+        wantedOrigins = wantedOrigins.concat(url.matches)
+    })
+    return wantedOrigins
 }
 
 //

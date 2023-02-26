@@ -1,7 +1,7 @@
 {
   "name": "PietSmiet Reactions YouTube",
   "description": "Adds a textbox underneath the YouTube player so see if a PietSmiet reaction exists to this video.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "manifest_version": 3,
   "minimum_chrome_version": "102.0.0.0",
   "icons": {

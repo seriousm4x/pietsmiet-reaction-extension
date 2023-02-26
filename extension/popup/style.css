@@ -125,3 +125,11 @@ p {
   color: var(--font-muted);
   text-decoration: none;
 }
+
+#btnRequestPermissions {
+  display: none;
+  background-color: var(--bg-danger);
+  font-weight: bold;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
