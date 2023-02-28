@@ -2,13 +2,14 @@
 // Default values
 //
 
-const logTag = " --> [PSRE]"
+const logTag = " --> [PSRE]";
 let settings = {
     showNoReactions: true,
     noReactionsBgColor: "#046931",
     foundReactionsBgColor: "#9b393c",
-}
+};
 let reactions;
+let suggestions;
 
 //
 //  Functions
@@ -16,40 +17,71 @@ let reactions;
 
 async function init() {
     // define browser api
-    const api = getBrowser()
+    const api = getBrowser();
 
     // load settings from storage
-    settings = await api.storage.local.get(settings)
+    settings = await api.storage.local.get(settings);
     console.log(logTag, "loaded settings");
 
     // load reactions from storage. if no reactions or outdated, fetch them from github
-    reactions = await api.storage.local.get("reactions")
-    if (Object.keys(reactions).length === 0 || Date.now() - reactions.reactions.fetched_at >= 3600000) { // 1 hour
+    reactions = await api.storage.local.get("reactions");
+    // 1 hour
+    if (
+        Object.keys(reactions).length === 0 ||
+        Date.now() - reactions.reactions.fetched_at >= 3600000
+    ) {
         console.log(logTag, "fetching reactions");
-        fetch("https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/data/matches.min.json")
-            .then(res => res.json())
-            .then(data => {
+        fetch(
+            "https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/data/matches.min.json"
+        )
+            .then((res) => res.json())
+            .then((data) => {
                 const reactionsItem = {
                     fetched_at: Date.now(),
                     videos: data,
                 };
-                reactions = reactionsItem
+                reactions = reactionsItem;
                 api.storage.local.set({ reactions: reactionsItem });
-            })
+            });
     } else {
-        reactions = reactions.reactions
+        reactions = reactions.reactions;
     }
     console.log(logTag, "loaded reactions");
 
+    // load suggestions from storage. if no suggestions or outdated, fetch them from github
+    suggestions = await api.storage.local.get("suggestions");
+    // 1 hour
+    if (
+        Object.keys(suggestions).length === 0 ||
+        Date.now() - suggestions.suggestions.fetched_at >= 3600000
+    ) {
+        console.log(logTag, "fetching suggestions");
+        fetch(
+            "https://raw.githubusercontent.com/seriousm4x/pietsmiet-reaction-extension/main/data/suggestions.min.json"
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                const suggestionsItem = {
+                    fetched_at: Date.now(),
+                    videos: data,
+                };
+                suggestions = suggestionsItem;
+                api.storage.local.set({ suggestions: suggestionsItem });
+            });
+    } else {
+        suggestions = suggestions.suggestions;
+    }
+    console.log(logTag, "loaded suggestions");
+
     // observe youtube page for elements
-    runObserver()
+    runObserver();
 }
 
 function getBrowser() {
     if (typeof chrome !== "undefined") {
-        return chrome
+        return chrome;
     }
-    return browser
+    return browser;
 }
 
 function runObserver() {
@@ -110,15 +142,16 @@ function createHTML() {
     reactionBox.style.borderRadius = "12px";
 
     // create message
-    const reactionMessage = document.createElement("p");
-    reactionMessage.style.fontWeight = "bold";
+    const title = document.createElement("p");
+    title.style.fontWeight = "bold";
+    const content = document.createElement("div");
 
     if (reactions.videos[videoId]) {
         // reaction exists
         console.log(logTag, "reaction found:", reactions.videos[videoId]);
         const countReactions = reactions.videos[videoId].length;
         reactionBox.style.backgroundColor = settings.foundReactionsBgColor;
-        reactionMessage.innerText =
+        title.innerText =
             countReactions === 1
                 ? "1 React gefunden:"
                 : `${countReactions} Reacts gefunden:`;
@@ -148,20 +181,49 @@ function createHTML() {
 
             reactsList.appendChild(li);
         });
-        reactionMessage.appendChild(reactsList);
+        content.appendChild(reactsList);
     } else {
         // reaction doesn't exist
         console.log(logTag, "no reaction found");
         if (!settings.showNoReactions) {
             console.log(logTag, "skipping html create");
-            return
+            return;
         }
         reactionBox.style.backgroundColor = settings.noReactionsBgColor;
-        reactionMessage.innerText = "Kein React gefunden";
+        title.innerText = "Kein React gefunden";
+        if (suggestions.videos[videoId]) {
+            const stats = document.createElement("p");
+            stats.style.paddingTop = "1rem";
+
+            const tagCount = document.createElement("span");
+            tagCount.style.backgroundColor = "#3a3a3a";
+            tagCount.style.padding = "0.2rem 0.4rem";
+            tagCount.style.borderRadius = "0.3rem";
+            tagCount.innerText = `${suggestions.videos[videoId].count} ${suggestions.videos[videoId].count === 1 ? "offener Vorschlag" : "offene Vorschläge"}`;
+
+            const tagLikes = document.createElement("span");
+            tagLikes.style.backgroundColor = "#009943";
+            tagLikes.style.padding = "0.2rem 0.4rem";
+            tagLikes.style.borderRadius = "0.3rem";
+            tagLikes.innerText = `${suggestions.videos[videoId].likes} 👍`;
+
+            const tagDislikes = document.createElement("span");
+            tagDislikes.style.backgroundColor = "#9b393c";
+            tagDislikes.style.padding = "0.2rem 0.4rem";
+            tagDislikes.style.borderRadius = "0.3rem";
+            tagDislikes.innerText = `${suggestions.videos[videoId].dislikes} 👎`;
+
+            stats.innerHTML = `<strong>Infos von PietSmiet.de:</strong><br>Dieses Video hat insgesamt ${tagCount.outerHTML} und hat dabei ${tagLikes.outerHTML} und ${tagDislikes.outerHTML}.`;
+
+            content.appendChild(stats);
+        } else {
+            title.innerText = title.innerText + " (und 0 offene Vorschläge)";
+        }
     }
 
     // insert element
-    reactionBox.appendChild(reactionMessage);
+    reactionBox.appendChild(title);
+    reactionBox.appendChild(content);
     aboveTheFold.insertBefore(reactionBox, aboveTheFold.children[2]);
 }
 
@@ -170,4 +232,4 @@ function createHTML() {
 //
 
 console.log(logTag, "starting pietsmiet reaction extension");
-init()
+init();
