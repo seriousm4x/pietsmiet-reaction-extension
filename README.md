@@ -16,6 +16,7 @@
 
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/pietsmiet-reactions/cmeffgcdjkledgkgonnfjpnlfelpfbkf)
 - [Firefox Add-Ons](https://addons.mozilla.org/de/firefox/addon/pietsmiet-reactions-youtube/)
+- [Microsoft Edge-Add-Ons](https://microsoftedge.microsoft.com/addons/detail/pietsmiet-reactions-youtu/meeaaoacaejacaffangpimamghedhead)
 
 Bei Firefox muss dem Addon nach dem installieren noch die Erlaubnis erteilt werden, auf youtube.com und pietsmiet.de zuzugreifen:
 
