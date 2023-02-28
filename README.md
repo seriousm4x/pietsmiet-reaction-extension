@@ -53,7 +53,7 @@ Folgende Liste hab ich getestet. Andere Browser sollten auch ohne Probleme klapp
 
 ## **Wie funktioniert das Ganze?**
 
-1. Ich verwende die Youtube Api um alle Videos der "Uploads" Playlist des [@PietSmietTV](https://www.youtube.com/@PietSmietTV)-Kanals abzufragen. Die ganze Abfrage wird in [youtube.json](./data/youtube.json) gespeichert.
-2. Dann wird der Titel nach "react" durchsucht und geprüft, ob die Beschreibung "Original(-)Video" enthält (das - ist optional), um sicher zu gehen, dass das Video auch wirklich verlinkt ist. Wenn beides zutrifft, wird die Beschreibung nach YouTube-Links durchsucht und dann in [matches.json](./data/matches.json) geschrieben.
+1. Ich verwende die Youtube Api um alle Videos der "Uploads" Playlist des [@PietSmietTV](https://www.youtube.com/@PietSmietTV)-Kanals abzufragen.
+2. Dann wird der Titel nach "react" durchsucht und geprüft, ob die Beschreibung "Original(-)Video" enthält (das - ist optional), um sicher zu gehen, dass das Video auch wirklich verlinkt ist. Wenn beides zutrifft, wird die Beschreibung nach YouTube-Links durchsucht und dann in [matches.json](./data/matches.json) geschrieben. Ebenfalls werden die Vorschläge auf pietsmiet.de abgefragt und gefiltert. Das Ergbnis wird in [suggestions.json](./data/suggestions.json) gespeichert.
 3. Github Actions führt immer um 16:00 Uhr einen Workflow aus, der die Matches aufgrund der täglichen Video-Uploads neu generiert. Github verschiebt bei "high load" Uhrzeiten (zur vollen Stunde) die Workflows zu Zeiten wenn weniger Last ist. Es kommt also öfter vor, dass Github den Workflow einfach zu einem komplett anderen Zeitpunkt ausführt.
-4. Die Browser Extension holt sich dann die [matches.min.json](./data/matches.min.json), prüft ob die aktuelle VideoID der Browser URL in den Matches enthalten ist und fügt entsprechend die Box unter dem Video ein.
+4. Die Browser Extension holt sich dann die beiden .json Dateien, prüft ob die aktuelle VideoID der Browser URL in den Dateien enthalten ist und fügt entsprechend die Box unter dem Video ein.
