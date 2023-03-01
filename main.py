@@ -1,8 +1,8 @@
 import argparse
 import json
 
-from apis import youtube_api
 from apis.pietsmiet_api import Pietsmiet
+from apis.youtube_api import YouTube
 
 
 def main():
@@ -14,8 +14,9 @@ def main():
 
     # create youtube matches
     print("creating youtube matches ...")
-    videos = youtube_api.get_videos(args.api)
-    matches = youtube_api.create_matches(videos)
+    yt = YouTube()
+    videos = yt.get_videos(args.api)
+    matches = yt.create_matches(videos)
     with open("data/matches.min.json", "w", encoding="utf-8") as f:
         json.dump(matches, f)
     with open("data/matches.json", "w", encoding="utf-8") as f:
