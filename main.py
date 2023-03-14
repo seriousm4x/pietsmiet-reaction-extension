@@ -17,10 +17,10 @@ def main():
     yt = YouTube()
     videos = yt.get_videos(args.api)
     matches = yt.create_matches(videos)
-    with open("data/matches.min.json", "w", encoding="utf-8") as f:
-        json.dump(matches, f)
     with open("data/matches.json", "w", encoding="utf-8") as f:
         json.dump(matches, f, indent=4)
+    with open("data/matches.min.json", "w", encoding="utf-8") as f:
+        json.dump(matches, f)
     print(f"found {len(matches)} matches ...")
 
     # create pietsmiet suggestions

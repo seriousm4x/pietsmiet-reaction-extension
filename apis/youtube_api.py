@@ -50,9 +50,9 @@ class YouTube:
 
         return videos
 
-    def create_matches(self, videos: list) -> None:
+    def create_matches(self, videos: list) -> dict:
         '''
-        scans video description for youtube urls and writes them into "matches.json"
+        scans video description for youtube urls
         '''
 
         matches = {}
