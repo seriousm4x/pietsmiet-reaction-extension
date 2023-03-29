@@ -199,7 +199,7 @@ function createHTML() {
             tagCount.style.backgroundColor = "#3a3a3a";
             tagCount.style.padding = "0.2rem 0.4rem";
             tagCount.style.borderRadius = "0.3rem";
-            tagCount.innerText = `${suggestions.videos[videoId].count} ${suggestions.videos[videoId].count === 1 ? "offener Vorschlag" : "offene Vorschläge"}`;
+            tagCount.innerText = `${suggestions.videos[videoId].count} ${suggestions.videos[videoId].count === 1 ? "offenen Vorschlag" : "offene Vorschläge"}`;
 
             const tagLikes = document.createElement("span");
             tagLikes.style.backgroundColor = "#009943";
