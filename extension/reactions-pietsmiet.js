@@ -87,7 +87,8 @@ function createHtmlSingle(div) {
         // create our message
         const messageDiv = document.createElement("a");
         messageDiv.href =
-            "https://youtube.com/watch?v=" + reactions.videos[videoId][0].reaction_id;
+            "https://youtube.com/watch?v=" +
+            reactions.videos[videoId][0].reaction_id;
         messageDiv.target = "_blank";
         messageDiv.classList = "text-center font-bold mt-1 p-3";
         messageDiv.innerText =
@@ -103,7 +104,8 @@ function createHtmlSingle(div) {
             return;
         }
         // set css
-        upvoteDiv.parentElement.style.backgroundColor = settings.noReactionsBgColor;
+        upvoteDiv.parentElement.style.backgroundColor =
+            settings.noReactionsBgColor;
 
         // create our message
         const messageDiv = document.createElement("div");
@@ -128,7 +130,9 @@ function runObserver() {
         if (window.location.pathname === "/community/suggestions") {
             for (const _ of mutationsList) {
                 if (!builtHtml) {
-                    const divs = document.querySelectorAll(querySelectorMultiple);
+                    const divs = document.querySelectorAll(
+                        querySelectorMultiple
+                    );
                     if (divs.length > 0) {
                         createHtmlMultiple(divs);
                         builtHtml = true;
@@ -152,7 +156,9 @@ function runObserver() {
                     return;
                 }
             }
-        } else if (window.location.pathname.startsWith("/community/suggestions/")) {
+        } else if (
+            window.location.pathname.startsWith("/community/suggestions/")
+        ) {
             for (const _ of mutationsList) {
                 const div = document.querySelector(querySelectorSingle);
                 if (div) {
@@ -175,7 +181,10 @@ function runObserver() {
                 builtHtml = false;
                 addedSearchListener = false;
                 observer.disconnect();
-                observer.observe(document.body, { childList: true, subtree: true });
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                });
             }
         }, true);
     };
