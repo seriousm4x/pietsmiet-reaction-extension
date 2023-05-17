@@ -92,10 +92,8 @@ function runObserver() {
             return;
         }
         for (const mutation of mutationsList) {
-            if (
-                mutation.target.id === "bottom-row" &&
-                document.querySelector("#above-the-fold")
-            ) {
+            // if this element id gets created, we know that "#above-the-fold" exists to create our container
+            if (mutation.target.id === "microformat") {
                 observer.disconnect();
                 createHTML();
                 return;
@@ -133,7 +131,7 @@ function createHTML() {
     const videoId = urlParams.get("v");
 
     // create div
-    let aboveTheFold = document.querySelector("#above-the-fold");
+    const aboveTheFold = document.querySelector("#above-the-fold");
     const reactionBox = document.createElement("div");
     reactionBox.id = "pietsmiet-reaction-container";
     reactionBox.style.fontSize = "1.4rem";
@@ -176,7 +174,8 @@ function createHTML() {
             const span = document.createElement("span");
             span.style.cssText = "font-weight: normal;";
             span.innerText =
-                "Hochgeladen: " + new Date(published).toLocaleDateString("de-DE");
+                "Hochgeladen: " +
+                new Date(published).toLocaleDateString("de-DE");
             li.appendChild(span);
 
             reactsList.appendChild(li);
@@ -199,7 +198,11 @@ function createHTML() {
             tagCount.style.backgroundColor = "#3a3a3a";
             tagCount.style.padding = "0.2rem 0.4rem";
             tagCount.style.borderRadius = "0.3rem";
-            tagCount.innerText = `${suggestions.videos[videoId].count} ${suggestions.videos[videoId].count === 1 ? "offenen Vorschlag" : "offene Vorschläge"}`;
+            tagCount.innerText = `${suggestions.videos[videoId].count} ${
+                suggestions.videos[videoId].count === 1
+                    ? "offenen Vorschlag"
+                    : "offene Vorschläge"
+            }`;
 
             const tagLikes = document.createElement("span");
             tagLikes.style.backgroundColor = "#009943";
