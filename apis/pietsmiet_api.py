@@ -16,13 +16,13 @@ class Pietsmiet:
         Get custom integrity header value for api requests
         """
 
-        html_text = requests.get(
-            "https://www.pietsmiet.de/community/suggestions").text
-        r = re.findall(r"(?:window._i.*)({.*})", html_text)
-        if r:
-            integrity = json.loads(r[0])
-            decoded = base64.b64decode(integrity["v"]).decode()
-            return decoded
+        req = requests.get(
+            "https://www.pietsmiet.de/api/v1/config/i",
+            headers={"Accept": "application/json"},
+        )
+        integrity = req.json().get("v")
+        decoded = base64.b64decode(integrity).decode()
+        return decoded
 
     def api_request(self, url: str):
         """
@@ -31,22 +31,19 @@ class Pietsmiet:
 
         if not self.integrity:
             self.integrity = self.get_integrity()
-        header = {
-            "Accept": "application/json",
-            "X-Origin-Integrity": self.integrity
-        }
+        header = {"Accept": "application/json", "X-Origin-Integrity": self.integrity}
         req = requests.get(url, headers=header)
         if not req.ok:
-            print("-"*10 ," REQUEST NOT OK ", "-"*10)
+            print("-" * 10, " REQUEST NOT OK ", "-" * 10)
             print("url:", req.url)
             print("integrity:", self.integrity)
             print("status code:", req.status_code)
             print("response text:", req.text)
-            print("-"*38)
+            print("-" * 38)
             exit(1)
         return req.json()
 
-    def get_suggestions(self) -> list:
+    def get_suggestions(self) -> dict:
         """
         build final dict for suggestions
         """
@@ -67,7 +64,7 @@ class Pietsmiet:
                         suggestions[youtube_id] = {
                             "count": 0,
                             "likes": 0,
-                            "dislikes": 0
+                            "dislikes": 0,
                         }
                     suggestions[youtube_id]["count"] += 1
                     suggestions[youtube_id]["likes"] += suggestion["likes_count"]
