@@ -35,6 +35,9 @@ class Pietsmiet:
             "X-Origin-Integrity": self.integrity
         }
         req = requests.get(url, headers=header)
+        if not req.ok:
+            print(req.url)
+            print(req.text)
         return req.json()
 
     def get_suggestions(self) -> list:
