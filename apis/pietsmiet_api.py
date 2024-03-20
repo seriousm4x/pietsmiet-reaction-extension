@@ -32,12 +32,18 @@ class Pietsmiet:
         if not self.integrity:
             self.integrity = self.get_integrity()
         header = {
+            "Accept": "application/json",
             "X-Origin-Integrity": self.integrity
         }
         req = requests.get(url, headers=header)
         if not req.ok:
-            print(req.url)
-            print(req.text)
+            print("-"*10 ," REQUEST NOT OK ", "-"*10)
+            print("url:", req.url)
+            print("integrity:", self.integrity)
+            print("status code:", req.status_code)
+            print("response text:", req.text)
+            print("-"*38)
+            exit(1)
         return req.json()
 
     def get_suggestions(self) -> list:
