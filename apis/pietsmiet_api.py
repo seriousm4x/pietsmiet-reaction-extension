@@ -20,6 +20,9 @@ class Pietsmiet:
             "https://www.pietsmiet.de/api/v1/config/i",
             headers={"Accept": "application/json"},
         )
+        if not req.ok:
+            self.exit_req_not_ok(req)
+
         integrity = req.json().get("v")
         decoded = base64.b64decode(integrity).decode()
         return decoded
@@ -34,13 +37,7 @@ class Pietsmiet:
         header = {"Accept": "application/json", "X-Origin-Integrity": self.integrity}
         req = requests.get(url, headers=header)
         if not req.ok:
-            print("-" * 10, " REQUEST NOT OK ", "-" * 10)
-            print("url:", req.url)
-            print("integrity:", self.integrity)
-            print("status code:", req.status_code)
-            print("response text:", req.text)
-            print("-" * 38)
-            exit(1)
+            self.exit_req_not_ok(req)
         return req.json()
 
     def get_suggestions(self) -> dict:
@@ -75,3 +72,12 @@ class Pietsmiet:
                 break
 
         return suggestions
+
+    def exit_req_not_ok(self, req):
+        print("-" * 10, " REQUEST NOT OK ", "-" * 10)
+        print("url:", req.url)
+        print("integrity:", self.integrity)
+        print("status code:", req.status_code)
+        print("response text:", req.text)
+        print("-" * 38)
+        exit(1)
