@@ -16,10 +16,11 @@ class Pietsmiet:
         Get custom integrity header value for api requests
         """
 
+        headers = {"Accept": "application/json",
+                   "User-Agent": "curl/8.6.0"}
+
         req = requests.get(
-            "https://www.pietsmiet.de/api/v1/config/i",
-            headers={"Accept": "application/json"},
-        )
+            "https://www.pietsmiet.de/api/v1/config/i", headers=headers)
         if not req.ok:
             self.exit_req_not_ok(req)
 
@@ -34,8 +35,10 @@ class Pietsmiet:
 
         if not self.integrity:
             self.integrity = self.get_integrity()
-        header = {"Accept": "application/json", "X-Origin-Integrity": self.integrity}
-        req = requests.get(url, headers=header)
+        headers = {"Accept": "application/json",
+                   "User-Agent": "curl/8.6.0",
+                   "X-Origin-Integrity": self.integrity}
+        req = requests.get(url, headers=headers)
         if not req.ok:
             self.exit_req_not_ok(req)
         return req.json()
