@@ -16,7 +16,7 @@ class Pietsmiet:
         """
 
         headers = {"Accept": "application/json",
-                   "User-Agent": "curl/8.6.0"}
+                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"}
 
         req = requests.get(
             "https://www.pietsmiet.de/api/v1/config/i", headers=headers)
@@ -35,7 +35,7 @@ class Pietsmiet:
         if not self.integrity:
             self.integrity = self.get_integrity()
         headers = {"Accept": "application/json",
-                   "User-Agent": "curl/8.6.0",
+                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
                    "X-Origin-Integrity": self.integrity}
         req = requests.get(url, headers=headers)
         if not req.ok:
