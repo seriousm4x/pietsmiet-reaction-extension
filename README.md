@@ -1,6 +1,6 @@
 > [!IMPORTANT]  
 > Die Extension funktioniert nicht mehr, da Cloudflare die API requests von Github Actions blockiert.
-> Dementsprechend werden können die Daten nicht mehr abgeglichen werden.
+> Dementsprechend können die Daten nicht mehr abgeglichen werden.
 
 <div align="center" width="100%">
     <img src="extension/icons/128.png" width="128" />
